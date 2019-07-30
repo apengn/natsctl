@@ -7,7 +7,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/upengs/natsctl/pkg/constans"
+	"github.com/upengs/natsctl/internal/app/natsctl/constans"
 
 	nats "github.com/nats-io/nats.go"
 )
@@ -45,9 +45,20 @@ func (n *NatsOperation) Stdin() {
 func (n *NatsOperation) run(args ...string) {
 	switch args[0] {
 	case "subasync":
-		// input: sub key
+		// input: sub subj
+		if len(args) < 2 {
+			fmt.Println("参数不正确！example: subasync subj")
+			n.Stdin()
+			return
+		}
 		n.subscribeAsync(args[1])
 	case "subqueue":
+
+		if len(args) < 3 {
+			fmt.Println("参数不正确！example: subqueue subj queue")
+			n.Stdin()
+			return
+		}
 		// input subqueue subj queue
 		n.queueSubscribe(args[1], args[2])
 	case "pub":

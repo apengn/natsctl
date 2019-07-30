@@ -16,7 +16,7 @@ func NewNatsConnectOptions() *NatsConnectOptions {
 	return &NatsConnectOptions{}
 }
 
-func (n *NatsConnectOptions) connect(option nats.Options, ca []string, cert, key string) error {
+func (n *NatsConnectOptions) Connect(option nats.Options, ca []string, cert, key string) error {
 	var options []nats.Option
 
 	if option.Name != "" {

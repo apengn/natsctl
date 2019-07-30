@@ -1,9 +1,10 @@
-package connect
+package cmd
 
 import (
 	"fmt"
+	connect2 "github.com/upengs/natsctl/internal/app/natsctl/connect"
 
-	"github.com/upengs/natsctl/pkg/constans"
+	"github.com/upengs/natsctl/internal/app/natsctl/constans"
 
 	nats "github.com/nats-io/nats.go"
 	"github.com/spf13/cobra"
@@ -46,7 +47,7 @@ func NewCmdConnect() *cobra.Command {
 }
 
 func connect(options *nats.Options, tls tls) {
-	if err := NewNatsConnectOptions().connect(*options, tls.ca, tls.cert, tls.key); err != nil {
+	if err := connect2.NewNatsConnectOptions().Connect(*options, tls.ca, tls.cert, tls.key); err != nil {
 		fmt.Println(err)
 		return
 	}
