@@ -55,6 +55,8 @@ func (n *NatsOperation) run(args ...string) {
 	case "help", "h":
 		fmt.Print(constans.Example)
 		n.Stdin()
+	case "exit", "quit":
+		os.Exit(1)
 	default:
 		fmt.Printf("No command [%s]\n", args[0])
 		fmt.Println("See examples usage command: help,h")
